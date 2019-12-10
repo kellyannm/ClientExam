@@ -1,0 +1,38 @@
+<template>
+    <button class="btn btn-primary" click.trigger="newwidget()" style="margin-bottom:10px;">Create widget</button>
+    <!-- <button class="btn btn-primary" click.trigger="newwidget()" style="margin-bottom:10px;">Create widget</button> -->
+    <table class="table table-light">
+        <thead>
+            <tr>
+                <th colspan="3">
+                    <div class="checkbox leftMargin">
+                        <label>
+                            <input checked.bind="isCheckedCompleted" type="checkbox"> Filter out Completed widgets
+                        </label>
+                    </div>
+                </th>
+            </tr>
+            <tr>
+                <th scope="col">widget</th>
+                <th scope="col">Status</th>
+                <th scope="col">Date Due</th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+
+            <tr repeat.for="widget of widget.widgetsArray | filterwidgets:isCheckedCompleted">
+                <td scope="row" click.delegate="editwidget(widget)">${widget.widget}</td>
+                <td><select change.delegate="updatewidget(widget)" value.bind="widget.status" class="form-control"
+                        id="widgetStatus">
+                        <option repeat.for="status of statuses" value.bind="status">${status}</option>
+                    </select></td>
+                <td>${widget.dateDue | dateFormat}</td>
+                <td>
+                    <button click.trigger="deletewidget(widget)" type="button" class="btn btn-danger btn-sm">Delete</button>
+                </td>
+            </tr>
+              
+        </tbody>
+    </table>
+</template>

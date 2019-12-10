@@ -1,0 +1,6 @@
+<template>
+      <div class="container" style="margin-top:75px;">
+        <compose show.bind="showForm" view="./components/widgetsForm.html"></compose>
+        <compose show.bind="!showForm" view="./components/widgetsTable.html"></compose>
+    </div>
+</template>
